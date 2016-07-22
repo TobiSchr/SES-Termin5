@@ -1,0 +1,38 @@
+1. Arten des Datenaustauschs
+	Pipes
+	Named Pipes (FIFO)
+	Shared Memory
+	Message Queues (POSIX)
+	lokale / remote Sockets
+	QNX-Messages
+	über Files
+
+2. Datenaustausch 
+	zwischen Threads
+		teilen gleichen Adressraum
+		Threads können einfach auf die globalen Variablen des Prozesses zugreifen
+		Kommunikation über Variablen und Funktionen			
+		benötigen Semaphoren zum Signalisieren und Mutexe zum Ausschluss
+	zwischen Prozessen
+		erschwert durch unterschiedliche Adressräume
+		benötigen Kommunikationsmittel
+		Shared Memory mit Messege Queues / Pipe / Sockets
+
+3. Vermeidung von Datenaustausch zwischen Prozessen durch Threads
+	IPC Vorteile
+		Prozesse / Systeme können über Grenzen miteinander kommunizieren
+	IPC Nachteile
+		Mehr Ressourcenverbrauch, Kopieraufwand 
+		ähnliche Probleme bei der Synchronisation des Zugriffs wie zwischen Threads
+		SHM: man muss sich selbst um den Zugriffsschutz kümmern
+	
+	
+SHM in Prozess einbinden unter POSIX
+1. Erzeugen bzw. holen des SHM-Objekts (shm_open)
+2. Nach erstem öffnen größe vom SHM-Objekt bestimmen (ftruncate)
+3. Anschließend SHM-Objekt in Adressraum einblenden (mmap)
+
+
+Praktikum Erkenntnis:
+	Länge der Queue beeinflusst ...
+
